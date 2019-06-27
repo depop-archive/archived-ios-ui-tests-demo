@@ -18,6 +18,7 @@ class DetailViewController: UIViewController {
         if let detail = detailItem {
             if let label = detailDescriptionLabel {
                 label.text = detail.description
+                label.accessibilityIdentifier = "detail.description.label"
             }
         }
     }

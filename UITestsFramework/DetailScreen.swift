@@ -6,10 +6,20 @@
 //  Copyright © 2019 Russell Yeo. All rights reserved.
 //
 
-import Foundation
+import XCTest
 
 class DetailScreen: ScreenModel {
     
+    private var detailLabel: XCUIElement {
+        return app
+            .textFields
+            .matching(identifier: "detail.description.label")
+            .firstMatch
+    }
     
+    func assertDetailLabel(matches string: String) {
+        XCTAssertEqual(detailLabel.exists, true)
+        XCTAssertEqual(detailLabel.label, string)
+    }
     
 }
