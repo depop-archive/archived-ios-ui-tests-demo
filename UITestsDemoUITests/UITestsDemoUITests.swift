@@ -9,23 +9,11 @@
 import XCTest
 
 class UITestsDemoUITests: UITestCase {
-
     func testNumberOfRows() {
         let _ = MasterScreen(context: context)
-            .tapAddNavBarButton(times: 3)
-            .assertNumberOfRows(number: 3)
-    }
-    
-    func testTopRowLabel() {
-        let _ = MasterScreen(context: context)
-            .tapAddNavBarButton(times: 4)
-            .assertTopRow(label: "4")
-    }
-    
-    func assertDetailLabel() {
-        let _ = MasterScreen(context: context)
             .tapAddNavBarButton(times: 5)
-            .tapRow(at: 6)
-            .assertDetailLabel(matches: "5")
+            .assertRow(at: 0, has: "5")
+            .tapRow(at: 2)
+            .assertDetailLabel(matches: "3")
     }
 }

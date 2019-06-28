@@ -12,7 +12,7 @@ class DetailScreen: ScreenModel {
     
     private var detailLabel: XCUIElement {
         return app
-            .textFields
+            .staticTexts
             .matching(identifier: "detail.description.label")
             .firstMatch
     }

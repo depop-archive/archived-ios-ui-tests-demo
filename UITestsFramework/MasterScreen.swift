@@ -27,13 +27,6 @@ class MasterScreen: ScreenModel {
             .firstMatch
     }
     
-    private var allRows: [XCUIElement] {
-        return app
-            .tables
-            .cells
-            .allElementsBoundByAccessibilityElement
-    }
-    
     func tapAddNavBarButton(times: Int) -> MasterScreen {
         (0..<times).forEach { _ in addNavBarButton.tap() }
         return self
@@ -44,12 +37,9 @@ class MasterScreen: ScreenModel {
         return DetailScreen(context: context)
     }
     
-    func assertNumberOfRows(number: Int) {
-        XCTAssertEqual(allRows.count, number)
-    }
-    
-    func assertTopRow(label: String) {
-        XCTAssertEqual(row(at: 0).staticTexts[label].exists, true)
+    func assertRow(at index: Int, has label: String) -> MasterScreen {
+        XCTAssertEqual(row(at: index).staticTexts[label].exists, true)
+        return self
     }
     
 }

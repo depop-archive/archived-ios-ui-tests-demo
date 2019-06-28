@@ -29,7 +29,7 @@ extension XCTestCase {
 class UITestCase: XCTestCase {
     
     private(set) var app: XCUIApplication!
-	var envvars = [String:String]() // additional env vars that subclasses can modify
+	var envVars = [String:String]() // additional env vars that subclasses can modify
     
     var context: UITestContext {
         return (app: app, testCase: self)
@@ -48,8 +48,9 @@ class UITestCase: XCTestCase {
     
     fileprivate func launchApp() {
         app = XCUIApplication()
-		let env = ["DISABLE_ANIMATIONS": "1"].merging(envvars) { (_, new) -> String in new }
-        app.launchEnvironment = env
+        let defaultEnv = ["DISABLE_ANIMATIONS": "1",
+                          "MOCKSERVER_URL": "http://localhost:1234"]
+        app.launchEnvironment = defaultEnv.merging(envVars) { (_, new) -> String in new }
         app.launch()
     }
 }
